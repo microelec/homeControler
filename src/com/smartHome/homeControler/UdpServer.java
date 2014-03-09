@@ -3,9 +3,11 @@ package com.smartHome.homeControler;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.SocketException;
 
 import android.util.Log;
+import android.widget.TextView;
 
 public class UdpServer implements Runnable {
 
@@ -43,6 +45,11 @@ public class UdpServer implements Runnable {
 				try {
 					dSocket.receive(dPacket);
 					Log.i("msg sever received", new String(dPacket.getData()));
+					InetAddress peer_ip = dPacket.getAddress();
+					
+					UdpClient client = new UdpClient("Receiver get it");
+					client.setServerIp(peer_ip);
+					client.send();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

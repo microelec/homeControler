@@ -9,7 +9,8 @@ import java.net.UnknownHostException;
 
 public class UdpClient {
 
-	private static final int SERVER_PORT = 4444;
+	private  InetAddress SERVER_IP;
+	private int SERVER_PORT = 6001;
 
 	private DatagramSocket dSocket = null;
 
@@ -23,6 +24,11 @@ public class UdpClient {
 		this.msg = msg;
 	}
 
+	public void setServerIp(InetAddress ip)
+	{
+		
+		SERVER_IP = ip;
+	}
 	/**
 	 * 发送信息到服务器
 	 */
@@ -45,7 +51,7 @@ public class UdpClient {
 		}
 		int msg_len = msg == null ? 0 : msg.length();
 		DatagramPacket dPacket = new DatagramPacket(msg.getBytes(), msg_len,
-				local, SERVER_PORT);
+				SERVER_IP, SERVER_PORT);
 		try {
 			dSocket.send(dPacket);
 			sb.append("消息发送成功!").append("/n");
