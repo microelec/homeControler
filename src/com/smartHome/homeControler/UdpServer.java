@@ -18,6 +18,7 @@ public class UdpServer implements Runnable {
 	private boolean life = true;
 
 	public UdpServer() {
+
 	}
 
 	/**
@@ -39,6 +40,8 @@ public class UdpServer implements Runnable {
 	public void run() {
 		DatagramSocket dSocket = null;
 		DatagramPacket dPacket = new DatagramPacket(msg, msg.length);
+		Log.i("UdpServer is running", "");
+
 		try {
 			dSocket = new DatagramSocket(PORT);
 			while (life) {

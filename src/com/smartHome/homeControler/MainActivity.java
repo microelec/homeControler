@@ -36,10 +36,11 @@ public class MainActivity extends Activity {
 		info_tv = (TextView) findViewById(R.id.textView1);
 
 		// ¿ªÆô·þÎñÆ÷
+		/*
 		ExecutorService exec = Executors.newCachedThreadPool();
 		UdpServer server = new UdpServer();
 		exec.execute(server);
-		
+		*/
         new Thread(new Client()).start();
         Handler = new Handler() {
       @Override public void handleMessage(Message msg) {
